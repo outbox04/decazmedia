@@ -147,7 +147,10 @@ if (!folderId) {
 
   // ===== COPY LINK =====
   const copyLink = async (slug: string, folderId: string) => {
-    const fullLink = `${window.location.origin}/project/${slug}?fid=${folderId}`
+    const fullLink =
+  typeof window !== 'undefined'
+    ? `${window.location.origin}/project/${job.slug}?fid=${job.folder_id}`
+    : ''
 
     await navigator.clipboard.writeText(fullLink)
     alert('Đã copy link')
