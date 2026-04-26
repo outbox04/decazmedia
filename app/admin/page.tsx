@@ -149,7 +149,7 @@ if (!folderId) {
   const copyLink = async (slug: string, folderId: string) => {
     const fullLink =
   typeof window !== 'undefined'
-    ? `${window.location.origin}/project/${job.slug}?fid=${job.folder_id}`
+    ? `${window.location.origin}/project/${slug}?fid=${folderId}`
     : ''
 
     await navigator.clipboard.writeText(fullLink)
