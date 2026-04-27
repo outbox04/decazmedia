@@ -614,7 +614,11 @@ useEffect(() => {
                 style={{ animationDelay: `${Math.min(index * 60, 600)}ms` }}
               >
                 <div className="photo-img-wrap" onClick={() => setCurrent(photos.findIndex((ph) => ph.id === p.id))}>
-                  <img src={p.url} alt={p.code} loading="lazy" />
+                  <img
+                    src={`https://lh3.googleusercontent.com/d/${p.id}`}
+                    alt=""
+                    style={{ width: "100%", height: "auto" }}
+                  />
                   <div className="photo-overlay">
                     <span className="overlay-view">Xem ảnh</span>
                   </div>
