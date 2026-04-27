@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Resend } from 'resend'
+
 
 // ─── TYPES ───────────────────────────────────────────────
 type Plan = 'basic' | 'medium' | 'premium'
@@ -60,23 +60,7 @@ function useReveal() {
     return () => obs.disconnect()
   }, [])
 }
-useEffect(() => {
-  const [photos, setPhotos] = useState<any[]>([])
-  const fetchPhotos = async () => {
-    try {
-      const res = await fetch('/api/drive?folderId=1Q0x6YezOt32SwpquMVIRj2_mAYvq5sSM')
-      const data = await res.json()
 
-      console.log("DRIVE:", data)
-
-      setPhotos(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  fetchPhotos()
-}, [])
 
 // ─── TESTIMONIALS ─────────────────────────────────────────
 const testimonials = [
@@ -150,6 +134,23 @@ export default function Home() {
     alert("Vui lòng nhập tên và số điện thoại")
     return
   }
+
+  useEffect(() => {
+  const fetchPhotos = async () => {
+    try {
+      const res = await fetch('/api/drive?folderId=1Q0x6YezOt32SwpquMVIRj2_mAYvq5sSM')
+      const data = await res.json()
+
+      console.log("DRIVE:", data)
+
+      setPhotos(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  fetchPhotos()
+}, [])
 
   setSending(true)
 
