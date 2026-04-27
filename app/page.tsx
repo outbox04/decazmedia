@@ -162,16 +162,14 @@ export default function Home() {
 }
 useEffect(() => {
   const fetchPhotos = async () => {
-    try {
-      const res = await fetch('/api/drive?folderId=1Q0x6YezOt32SwpquMVIRj2_mAYvq5sSM')
-      const data = await res.json()
+    const res = await fetch('/api/drive?folderId=1Q0x6YezOt32SwpquMVIRj2_mAYvq5sSM')
+    const data = await res.json()
 
-      console.log("DRIVE:", data)
+    console.log("HOME DRIVE:", data)
 
-      setPhotos(data.filter((f: any) => f.mimeType.includes("image")))
-    } catch (err) {
-      console.log(err)
-    }
+    setPhotos(
+      data.filter((f: any) => f.mimeType?.includes("image"))
+    )
   }
 
   fetchPhotos()

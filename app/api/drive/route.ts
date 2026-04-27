@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const query = `'${folderId}' in parents`
+    const query = `'${folderId}' in parents and mimeType contains 'image/'`
 
     const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(
       query
