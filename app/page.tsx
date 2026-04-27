@@ -257,6 +257,12 @@ export default function Home() {
         }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
 
+@media (max-width: 768px) {
+  .gallery-item {
+    grid-row: span 1 !important;
+  }
+}
+
         /* PRICING */
         .pricing-card {
           background: var(--surface);
@@ -320,9 +326,10 @@ export default function Home() {
           animation: fadeIn 0.2s ease;
         }
         @media (max-width: 768px) {
-
   .container {
     padding: 0 16px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .hero-title {
@@ -489,8 +496,13 @@ export default function Home() {
             opacity: 0.4,
           }} />
 
-          <div className="container" style={{ position: 'relative', zIndex: 1, padding: '80px 16px' }}>
-            <div style={{ maxWidth: 760 }}>
+          <div className="container" style={{
+  position: 'relative',
+  zIndex: 1,
+  padding: '80px 16px',
+  textAlign: 'center'   // 👈 thêm
+}}>
+            <div style={{ maxWidth: 760, margin: '0 auto',textAlign: 'center' }}>
               <p className="section-label reveal" style={{ marginBottom: 28 }}>
                 Studio ảnh viện áo cưới · Premium
               </p>
@@ -685,12 +697,7 @@ export default function Home() {
               {galleryPhotos.map((p, i) => (
                 <div key={p.id}
                   className={`gallery-item reveal reveal-delay-${(i % 3) + 1}`}
-                  style={{
-  gridRow: typeof window !== "undefined" && window.innerWidth < 768
-  ? 'span 1'
-  : 'span 2',
-  aspectRatio: '3 / 4'
-}}
+                  style={{gridRow: 'span 2', aspectRatio: '3 / 4'}}
                 >
                   <div className="gallery-item-inner" style={{ background: galleryGradients[i], height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1rem', fontStyle: 'italic', color: 'rgba(212,175,55,0.3)', letterSpacing: '0.1em' }}>{p.label}</span>
