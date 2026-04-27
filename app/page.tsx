@@ -166,6 +166,9 @@ useEffect(() => {
     const data = await res.json()
 
     console.log("HOME DRIVE:", data)
+    console.log('STATUS:', res.status)
+console.log('DATA:', data)
+
 
     setPhotos(
       data.filter((f: any) => f.mimeType?.includes("image"))
