@@ -31,6 +31,8 @@ body {
   font-family: 'Jost', sans-serif;
   font-weight: 300;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 /* ── SCROLLBAR ── */
@@ -152,3 +154,4 @@ body {
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
+

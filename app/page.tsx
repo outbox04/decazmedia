@@ -327,7 +327,7 @@ export default function Home() {
         }
         @media (max-width: 768px) {
   .container {
-    padding: 0 16px;
+    padding: 0 32px;
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -407,7 +407,7 @@ export default function Home() {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
-    padding: 0 16px;
+    padding: 0 32px;
 
 @media (max-width: 768px) {
   .gallery-grid {
@@ -501,7 +501,7 @@ export default function Home() {
           <div className="container" style={{
   position: 'relative',
   zIndex: 1,
-  padding: '80px 16px',
+  padding: '80px 32px',
   textAlign: 'center'   // 👈 thêm
 }}>
             <div style={{ maxWidth: 760, margin: '0 auto',textAlign: 'center' }}>
