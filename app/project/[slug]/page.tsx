@@ -649,7 +649,10 @@ useEffect(() => {
 
             <div className="lb-content">
               <div className="lb-img-wrap">
-                <img src={photos[current].url} alt={photos[current].code} />
+                <img
+                  src={`https://lh3.googleusercontent.com/d/${photos[current].id}`}
+                  alt={photos[current].code}
+                />
               </div>
               <div className="lb-panel">
                 <div className="lb-panel-top">
