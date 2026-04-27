@@ -202,7 +202,7 @@ export default function Home() {
         .gold-text { color: var(--gold); font-weight: 600; }
 
         .nav-link {
-          font-size: 11px;
+          font-size: clamp(12px, 3vw, 14px);
           font-weight: 500;
           letter-spacing: 0.2em;
           text-transform: uppercase;
@@ -286,7 +286,7 @@ export default function Home() {
         }
 
         .feature-item {
-          font-size: 13px;
+          font-size: clamp(14px, 3.2vw, 15px);
           color: rgba(255,255,255,0.75);
           display: flex;
           align-items: flex-start;
@@ -319,6 +319,26 @@ export default function Home() {
           backdrop-filter: blur(8px);
           animation: fadeIn 0.2s ease;
         }
+        @media (max-width: 768px) {
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .section-heading {
+    font-size: 1.8rem;
+  }
+
+  .gallery-item {
+    aspect-ratio: 3 / 4 !important;
+    height: auto !important;
+  }
+
+}
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal-box {
           background: #0e0e0e;
@@ -401,7 +421,7 @@ export default function Home() {
 
         /* FOOTER */
         .footer-link {
-          font-size: 12px;
+          font-size: clamp(13px, 3vw, 14px);
           color: rgba(255,255,255,0.4);
           text-decoration: none;
           transition: color 0.2s;
@@ -459,7 +479,7 @@ export default function Home() {
             opacity: 0.4,
           }} />
 
-          <div className="container" style={{ position: 'relative', zIndex: 1, padding: '100px 48px' }}>
+          <div className="container" style={{ position: 'relative', zIndex: 1, padding: '80px 16px' }}>
             <div style={{ maxWidth: 760 }}>
               <p className="section-label reveal" style={{ marginBottom: 28 }}>
                 Studio ảnh viện áo cưới · Premium
@@ -541,7 +561,7 @@ export default function Home() {
         ══════════════════════════════════════════════════ */}
         <section style={{ padding: '80px 0' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 80, alignItems: 'center' }}>
               <div>
                 <p className="section-label reveal" style={{ marginBottom: 16 }}>Giải pháp</p>
                 <h2 className="section-heading reveal reveal-delay-1" style={{ marginBottom: 32 }}>
@@ -585,7 +605,7 @@ export default function Home() {
                   {['#ff5f57','#ffbd2e','#28ca41'].map(c => <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />)}
                 </div>
                 <p style={{ fontSize: 9, letterSpacing: '0.3em', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: 12 }}>Album Khách Hàng</p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flex: 1 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: 8, flex: 1 }}>
                   {[...Array(6)].map((_, i) => (
                     <div key={i} style={{
                       borderRadius: 6,
@@ -651,13 +671,13 @@ export default function Home() {
               <h2 className="section-heading reveal reveal-delay-1">Khoảnh khắc <em>đẹp nhất</em></h2>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'auto', gap: 12 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gridTemplateRows: 'auto', gap: 12 }}>
               {galleryPhotos.map((p, i) => (
                 <div key={p.id}
                   className={`gallery-item reveal reveal-delay-${(i % 3) + 1}`}
                   style={{
                     gridRow: i === 0 || i === 3 ? 'span 2' : 'span 1',
-                    height: i === 0 || i === 3 ? 480 : 220,
+                    aspectRatio: '3 / 4'
                   }}
                 >
                   <div className="gallery-item-inner" style={{ background: galleryGradients[i], height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
