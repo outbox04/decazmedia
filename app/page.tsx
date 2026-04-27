@@ -501,7 +501,7 @@ export default function Home() {
               </h1>
 
               <p className="reveal reveal-delay-2" style={{
-                fontSize: 16, lineHeight: 1.8, color: 'var(--text-sub)',
+                fontSize: 'clamp(14px, 4vw, 16px)', lineHeight: 1.8, color: 'var(--text-sub)',
                 maxWidth: 520, marginBottom: 44,
               }}>
                 Album cưới cao cấp – trải nghiệm chọn ảnh tinh tế dành riêng cho cô dâu & chú rể. Hiện đại, sang trọng, và hoàn toàn cá nhân hoá.
@@ -869,9 +869,9 @@ export default function Home() {
               <div>
                 <p style={{ fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold-dim)', marginBottom: 16 }}>Liên hệ</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                  <a href="tel:0900000000" className="footer-link">0900 000 000</a>
-                  <a href="mailto:hello@decaz.vn" className="footer-link">hello@decaz.vn</a>
-                  <a href="#" className="footer-link">Facebook</a>
+                  <a href="tel:0987603615" className="footer-link">0987 603 615</a>
+                  <a href="mailto:decaztran@gmail.com" className="footer-link">decaztran@gmail.com</a>
+                  <a href="https://www.facebook.com/transon.04201" className="footer-link">Facebook</a>
                 </div>
               </div>
             </div>
