@@ -2,11 +2,18 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation"
+
 
 
 export default function PhotoGallery() {
   const params = useSearchParams()
   const fid = params.get("fid")
+
+  const routeParams = useParams()
+  const slug = routeParams.slug as string
+  
+  
 
   const [photos, setPhotos] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -15,6 +22,7 @@ export default function PhotoGallery() {
   const [activeTab, setActiveTab] = useState<"all" | "selected">("all");
   const [current, setCurrent] = useState<number | null>(null);
   const [sent, setSent] = useState(false);
+  
   type Project = {
   id: string
   name: string
@@ -33,6 +41,26 @@ const [projects, setProjects] = useState<Project[]>([])
     if (selected.length === 0) return;
     setSent(true);
   };
+
+const handleSubmit = async () => {
+  const selectionsData = selected.map((id) => ({
+    id,
+    note: notes[id] || ""
+  }))
+
+  await fetch("/api/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      project_slug: slug, // nhớ có slug
+      selections: selectionsData
+    })
+  })
+
+  alert("Đã gửi yêu cầu!")
+}
 
 const prevPhoto = useCallback(
   () => setCurrent((c: number | null) => (c !== null && c > 0 ? c - 1 : photos.length - 1)),
@@ -596,7 +624,7 @@ useEffect(() => {
             </button>
           </div>
 
-          <button className="btn-submit" onClick={submitRequest}>
+          <button className="btn-submit" onClick={handleSubmit}>
             <span>Gửi yêu cầu</span>
             {selected.length > 0 && <span className="count-badge">{selected.length}</span>}
           </button>
