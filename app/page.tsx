@@ -686,9 +686,9 @@ export default function Home() {
                 <div key={p.id}
                   className={`gallery-item reveal reveal-delay-${(i % 3) + 1}`}
                   style={{
-  gridRow: window.innerWidth < 768
-    ? 'span 1'
-    : (i === 0 || i === 3 ? 'span 2' : 'span 1'),
+  gridRow: typeof window !== "undefined" && window.innerWidth < 768
+  ? 'span 1'
+  : 'span 2',
   aspectRatio: '3 / 4'
 }}
                 >
