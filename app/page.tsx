@@ -181,6 +181,12 @@ export default function Home() {
     <>
       {/* ══ GLOBAL PAGE STYLES ══ */}
       <style>{`
+      .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+}
         .hero-title {
           font-family: 'Cormorant Garamond', serif;
           font-size: clamp(3rem, 6vw, 5.5rem);
@@ -406,8 +412,9 @@ export default function Home() {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  padding: 0 32px;
 }
-    padding: 0 32px;
+    
 
 @media (max-width: 768px) {
   .gallery-grid {
