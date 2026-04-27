@@ -135,23 +135,6 @@ export default function Home() {
     return
   }
 
-  useEffect(() => {
-  const fetchPhotos = async () => {
-    try {
-      const res = await fetch('/api/drive?folderId=1Q0x6YezOt32SwpquMVIRj2_mAYvq5sSM')
-      const data = await res.json()
-
-      console.log("DRIVE:", data)
-
-      setPhotos(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  fetchPhotos()
-}, [])
-
   setSending(true)
 
   try {
@@ -177,7 +160,22 @@ export default function Home() {
 
   setSending(false)
 }
+useEffect(() => {
+  const fetchPhotos = async () => {
+    try {
+      const res = await fetch('/api/drive?folderId=1Q0x6YezOt32SwpquMVIRj2_mAYvq5sSM')
+      const data = await res.json()
 
+      console.log("DRIVE:", data)
+
+      setPhotos(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  fetchPhotos()
+}, [])
   return (
     <>
       {/* ══ GLOBAL PAGE STYLES ══ */}
