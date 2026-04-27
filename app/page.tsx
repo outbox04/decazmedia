@@ -168,7 +168,7 @@ useEffect(() => {
 
       console.log("DRIVE:", data)
 
-      setPhotos(data)
+      setPhotos(data.files.filter((f: any) => f.mimeType.includes("image")))
     } catch (err) {
       console.log(err)
     }
