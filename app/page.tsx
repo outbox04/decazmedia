@@ -187,6 +187,39 @@ export default function Home() {
   padding-left: clamp(16px, 4vw, 40px);
   padding-right: clamp(16px, 4vw, 40px);
 }
+  .nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 24px; /* 👈 QUAN TRỌNG */
+}
+
+.nav-link {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #ccc;
+  text-decoration: none;
+  min-width: max-content;
+  min-width: max-content;
+}
+  @media (max-width: 768px) {
+  .nav-menu {
+    gap: 12px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+  .nav-link:hover {
+  color: #D4AF37;
+}
         .hero-title {
           font-family: 'Cormorant Garamond', serif;
           font-size: clamp(3rem, 6vw, 5.5rem);
@@ -207,17 +240,23 @@ export default function Home() {
 
         .gold-text { color: var(--gold); font-weight: 600; }
 
-        .nav-link {
-          font-size: clamp(12px, 3vw, 14px);
-          font-weight: 500;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.65);
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-        .nav-link:hover { color: var(--gold); }
+        @media (max-width: 768px) {
+  .nav-link {
+    font-size: 12px;
+    letter-spacing: 0.08em; /* 👈 GIẢM */
+    min-width: max-content;
+  }
 
+  .nav-menu {
+    gap: 14px; /* 👈 vừa đủ */
+  }
+}
+        .nav-link:hover { color: var(--gold); }
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 16px;
+  }
+}
         /* PROBLEM CARDS */
         .problem-card {
           background: var(--surface);
@@ -473,7 +512,7 @@ export default function Home() {
           <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', fontWeight: 400, letterSpacing: '0.15em', color: 'var(--gold-light)' }}>
             DECAZ
           </span>
-          <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+          <div className="nav-menu">
             <a href="#services" className="nav-link" style={{ display: 'none' }}>Dịch vụ</a>
             <a href="#pricing" className="nav-link">Bảng giá</a>
             <a href="#contact" className="nav-link">Liên hệ</a>
