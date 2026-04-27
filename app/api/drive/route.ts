@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
 
     const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(
       query
-    )}&fields=files(id,name,mimeType,thumbnailLink)&pageSize=1000&key=${
+    )}&fields=files(id,name,mimeType,thumbnailLink,webContentLink)&pageSize=1000&key=${
       process.env.GOOGLE_API_KEY
     }`
 

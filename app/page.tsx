@@ -162,18 +162,21 @@ export default function Home() {
 }
 useEffect(() => {
   const fetchPhotos = async () => {
+  try {
     const res = await fetch('/api/drive?folderId=1Q0x6YezOt32SwpquMVIRj2_mAYvq5sSM')
     const data = await res.json()
 
     console.log("HOME DRIVE:", data)
-    console.log('STATUS:', res.status)
-console.log('DATA:', data)
 
-
-    setPhotos(
-      data.filter((f: any) => f.mimeType?.includes("image"))
+    const images = data.filter((f: any) =>
+      f.mimeType?.includes("image")
     )
+
+    setPhotos(images)
+  } catch (err) {
+    console.log("FETCH ERROR:", err)
   }
+}
 
   fetchPhotos()
 }, [])
@@ -761,7 +764,7 @@ console.log('DATA:', data)
   >
 
   <img
-  src={`https://drive.google.com/thumbnail?id=${photo.id}&sz=w1000`}
+  src={photo.thumbnailLink}
   alt={photo.name}
   className="gallery-item-inner"
   style={{
