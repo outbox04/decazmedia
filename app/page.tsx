@@ -764,14 +764,9 @@ useEffect(() => {
   >
 
   <img
-  src={photo.thumbnailLink}
+  src={`https://lh3.googleusercontent.com/d/${photo.id}`}
   alt={photo.name}
   className="gallery-item-inner"
-  style={{
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover'
-  }}
 />
 
     <div className="gallery-overlay">
