@@ -15,7 +15,9 @@ export async function POST(req: Request) {
 
     const { error } = await supabase
       .from("selections")
-      .insert(rows)
+      .upsert(rows, {
+    onConflict: "project_slug,photo_id"
+  })
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 })
