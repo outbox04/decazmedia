@@ -394,7 +394,17 @@ export default function Home() {
           margin-bottom: 8px;
           display: block;
         }
+          .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
 
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
         /* DIVIDER */
         .gold-divider {
           height: 1px;
@@ -538,7 +548,7 @@ export default function Home() {
               </h2>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
+            <div className="gallery-grid">
               {[
                 { icon: '📂', title: 'Quá nhiều ảnh khó chọn', desc: 'Hàng trăm tấm ảnh, không biết bắt đầu từ đâu, dễ bỏ sót những khoảnh khắc đẹp.' },
                 { icon: '📧', title: 'Gửi file rối rắm', desc: 'Email qua lại, file đính kèm lung tung, dễ nhầm phiên bản và mất thông tin.' },
@@ -671,14 +681,16 @@ export default function Home() {
               <h2 className="section-heading reveal reveal-delay-1">Khoảnh khắc <em>đẹp nhất</em></h2>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gridTemplateRows: 'auto', gap: 12 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gridTemplateRows: 'auto', gap: 12 }}>
               {galleryPhotos.map((p, i) => (
                 <div key={p.id}
                   className={`gallery-item reveal reveal-delay-${(i % 3) + 1}`}
                   style={{
-                    gridRow: i === 0 || i === 3 ? 'span 2' : 'span 1',
-                    aspectRatio: '3 / 4'
-                  }}
+  gridRow: window.innerWidth < 768
+    ? 'span 1'
+    : (i === 0 || i === 3 ? 'span 2' : 'span 1'),
+  aspectRatio: '3 / 4'
+}}
                 >
                   <div className="gallery-item-inner" style={{ background: galleryGradients[i], height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1rem', fontStyle: 'italic', color: 'rgba(212,175,55,0.3)', letterSpacing: '0.1em' }}>{p.label}</span>

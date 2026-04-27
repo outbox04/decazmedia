@@ -42,10 +42,10 @@ body {
 .font-serif { font-family: 'Cormorant Garamond', serif; }
 
 /* ── LAYOUT ── */
-.container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 48px;
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -62,7 +62,7 @@ body {
   background: linear-gradient(135deg, var(--gold-dim), var(--gold));
   color: #000;
   font-family: 'Jost', sans-serif;
-  font-size: 12px;
+  font-size: clamp(13px, 3vw, 14px);;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -98,7 +98,7 @@ body {
   background: transparent;
   color: var(--text);
   font-family: 'Jost', sans-serif;
-  font-size: 12px;
+  font-size: clamp(13px, 3vw, 14px);;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -127,7 +127,7 @@ body {
 /* ── SECTION LABEL ── */
 .section-label {
   font-family: 'Jost', sans-serif;
-  font-size: 10px;
+  font-size: clamp(13px, 3vw, 14px);
   font-weight: 500;
   letter-spacing: 0.45em;
   text-transform: uppercase;
