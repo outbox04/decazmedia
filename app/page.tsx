@@ -757,20 +757,16 @@ useEffect(() => {
     style={{ aspectRatio: '3 / 4' }}
   >
 
-    <img
-      
-  src={`https://drive.google.com/uc?export=view&id=${photo.id}`}
-  onError={(e) => {
-    e.currentTarget.src = `https://lh3.googleusercontent.com/d/${photo.id}`
+  <img
+  src={`https://drive.google.com/thumbnail?id=${photo.id}&sz=w1000`}
+  alt={photo.name}
+  className="gallery-item-inner"
+  style={{
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover'
   }}
-      alt={photo.name}
-      className="gallery-item-inner"
-      style={{
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover'
-      }}
-    />
+/>
 
     <div className="gallery-overlay">
       <span style={{
