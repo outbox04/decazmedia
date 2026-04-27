@@ -1,15 +1,15 @@
 'use client'
 
 import { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 
-const DEMO_PHOTOS = Array.from({ length: 12 }, (_, i) => ({
-  id: `p${i + 1}`,
-  code: `DSC_${String(1001 + i * 17).padStart(4, "0")}`,
-  url: `https://picsum.photos/seed/studio${i + 1}/800/1000`,
-}));
 
 export default function PhotoGallery() {
-  const [photos] = useState(DEMO_PHOTOS);
+  const params = useSearchParams()
+  const fid = params.get("fid")
+
+  const [photos, setPhotos] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<string[]>([]);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [activeTab, setActiveTab] = useState<"all" | "selected">("all");
@@ -43,6 +43,17 @@ const nextPhoto = useCallback(
   () => setCurrent((c: number | null) => (c !== null && c < photos.length - 1 ? c + 1 : 0)),
   [photos.length]
 )
+
+useEffect(() => {
+  if (!fid) return
+
+  fetch(`/api/drive?folderId=${fid}`)
+    .then(res => res.json())
+    .then(data => {
+      setPhotos(data)
+      setLoading(false)
+    })
+}, [fid])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
