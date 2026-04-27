@@ -332,6 +332,7 @@ export default function Home() {
     margin: 0 auto;
   }
 
+  
   .hero-title {
     font-size: 2.2rem;
   }
@@ -406,6 +407,7 @@ export default function Home() {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
+    padding: 0 16px;
 
 @media (max-width: 768px) {
   .gallery-grid {
@@ -519,14 +521,14 @@ export default function Home() {
                 Album cưới cao cấp – trải nghiệm chọn ảnh tinh tế dành riêng cho cô dâu & chú rể. Hiện đại, sang trọng, và hoàn toàn cá nhân hoá.
               </p>
 
-              <div className="reveal reveal-delay-3" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+              <div className="reveal reveal-delay-3" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
                 <Link href="/project/demo" className="btn-gold">Xem album mẫu</Link>
                 <button className="btn-outline" onClick={() => openModal('medium')}>Nhận tư vấn</button>
               </div>
 
               {/* Stats */}
               <div className="reveal reveal-delay-4" style={{
-                display: 'flex', gap: 48, marginTop: 72,
+                display: 'flex', gap: 48, marginTop: 72, justifyContent: 'center',
                 paddingTop: 40, borderTop: '1px solid var(--border)',
               }}>
                 {[['200+', 'Cặp đôi tin tưởng'], ['5★', 'Đánh giá trung bình'], ['48h', 'Thời gian xử lý']].map(([n, l]) => (
@@ -858,7 +860,7 @@ export default function Home() {
           background: '#030303',
         }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 48, marginBottom: 48 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 48, marginBottom: 48 }}>
               <div>
                 <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.6rem', fontWeight: 300, letterSpacing: '0.15em', color: 'var(--gold-light)', marginBottom: 12 }}>DECAZ</p>
                 <p style={{ fontSize: 13, color: 'var(--text-sub)', lineHeight: 1.8, maxWidth: 280 }}>
