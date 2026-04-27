@@ -103,6 +103,26 @@ useEffect(() => {
     })
 }, [fid])
 
+useEffect(() => {
+  if (!slug) return
+
+  fetch(`/api/selections?slug=${slug}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data) return
+
+      const selectedIds = data.map((item: any) => item.photo_id)
+
+      const notesMap: Record<string, string> = {}
+      data.forEach((item: any) => {
+        notesMap[item.photo_id] = item.note
+      })
+
+      setSelected(selectedIds)
+      setNotes(notesMap)
+    })
+}, [slug])
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (current === null) return;
