@@ -760,7 +760,11 @@ useEffect(() => {
   >
 
     <img
-      src={`https://lh3.googleusercontent.com/d/${photo.id}=w1000`}
+      
+  src={`https://drive.google.com/uc?export=view&id=${photo.id}`}
+  onError={(e) => {
+    e.currentTarget.src = `https://lh3.googleusercontent.com/d/${photo.id}`
+  }}
       alt={photo.name}
       className="gallery-item-inner"
       style={{
