@@ -46,6 +46,7 @@ function WaveBg() {
 // ─── HOOK: SCROLL REVEAL ─────────────────────────────────
 function useReveal() {
   useEffect(() => {
+    
     const els = document.querySelectorAll('.reveal')
     const obs = new IntersectionObserver(
       (entries) => {
@@ -59,25 +60,23 @@ function useReveal() {
     return () => obs.disconnect()
   }, [])
 }
+useEffect(() => {
+  const [photos, setPhotos] = useState<any[]>([])
+  const fetchPhotos = async () => {
+    try {
+      const res = await fetch('/api/drive?folderId=1Q0x6YezOt32SwpquMVIRj2_mAYvq5sSM')
+      const data = await res.json()
 
-// ─── FAKE GALLERY PHOTOS (placeholder gradients) ──────────
-const galleryPhotos = [
-  { id: 1, label: 'Cô dâu & chú rể', aspect: 'tall' },
-  { id: 2, label: 'Hoa cưới', aspect: 'wide' },
-  { id: 3, label: 'Khoảnh khắc', aspect: 'square' },
-  { id: 4, label: 'Tiệc cưới', aspect: 'tall' },
-  { id: 5, label: 'Chân dung', aspect: 'square' },
-  { id: 6, label: 'Chi tiết', aspect: 'wide' },
-]
+      console.log("DRIVE:", data)
 
-const galleryGradients = [
-  'linear-gradient(135deg, #1a1208 0%, #2d2010 50%, #1a1208 100%)',
-  'linear-gradient(135deg, #120e08 0%, #231a0c 50%, #120e08 100%)',
-  'linear-gradient(135deg, #0e0e0e 0%, #1e1a10 50%, #0e0e0e 100%)',
-  'linear-gradient(135deg, #120c06 0%, #2a1e0e 50%, #120c06 100%)',
-  'linear-gradient(135deg, #0a0a0a 0%, #1a1510 50%, #0a0a0a 100%)',
-  'linear-gradient(135deg, #100c06 0%, #221808 50%, #100c06 100%)',
-]
+      setPhotos(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  fetchPhotos()
+}, [])
 
 // ─── TESTIMONIALS ─────────────────────────────────────────
 const testimonials = [
@@ -131,6 +130,7 @@ export default function Home() {
   const [form, setForm] = useState<FormData>({name: "", phone: "", plan: "medium", note: ""})
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
+  const [photos, setPhotos] = useState<any[]>([])
 
   const openModal = (plan: Plan) => {
     setSelectedPlan(plan)
@@ -275,6 +275,17 @@ export default function Home() {
           color: rgba(212,175,55,0.12);
           line-height: 1;
         }
+
+.gallery-item {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
         /* GALLERY */
         .gallery-item {
@@ -742,19 +753,37 @@ export default function Home() {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gridTemplateRows: 'auto', gap: 12 }}>
-              {galleryPhotos.map((p, i) => (
-                <div key={p.id}
-                  className={`gallery-item reveal reveal-delay-${(i % 3) + 1}`}
-                  style={{gridRow: 'span 2', aspectRatio: '3 / 4'}}
-                >
-                  <div className="gallery-item-inner" style={{ background: galleryGradients[i], height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1rem', fontStyle: 'italic', color: 'rgba(212,175,55,0.3)', letterSpacing: '0.1em' }}>{p.label}</span>
-                  </div>
-                  <div className="gallery-overlay">
-                    <span style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.85)' }}>{p.label}</span>
-                  </div>
-                </div>
-              ))}
+              {photos.map((photo, i) => (
+  <div
+    key={photo.id}
+    className={`gallery-item reveal reveal-delay-${(i % 3) + 1}`}
+    style={{ aspectRatio: '3 / 4' }}
+  >
+
+    <img
+      src={`https://lh3.googleusercontent.com/d/${photo.id}=w1000`}
+      alt={photo.name}
+      className="gallery-item-inner"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover'
+      }}
+    />
+
+    <div className="gallery-overlay">
+      <span style={{
+        fontSize: 11,
+        letterSpacing: '0.2em',
+        textTransform: 'uppercase',
+        color: 'rgba(212,175,55,0.85)'
+      }}>
+        {photo.name}
+      </span>
+    </div>
+
+  </div>
+))}
             </div>
           </div>
         </section>
