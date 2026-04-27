@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { Resend } from 'resend'
 
 // ─── TYPES ───────────────────────────────────────────────
 type Plan = 'basic' | 'medium' | 'premium'
@@ -127,7 +128,7 @@ export default function Home() {
 
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<Plan>('medium')
-  const [form, setForm] = useState<FormData>({ name: '', phone: '', plan: 'medium', note: '' })
+  const [form, setForm] = useState<FormData>({name: "", phone: "", plan: "medium", note: ""})
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
 
@@ -145,22 +146,36 @@ export default function Home() {
   }
 
   const handleSubmit = async () => {
-    if (!form.name || !form.phone) { alert('Vui lòng nhập tên và số điện thoại'); return }
-    setSending(true)
-
-    // Gửi email admin qua API route (tuỳ chỉnh theo backend)
-    try {
-      await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-    } catch (_) {}
-
-    console.log('LEAD:', form)
-    setSending(false)
-    setSubmitted(true)
+  if (!form.name || !form.phone) {
+    alert("Vui lòng nhập tên và số điện thoại")
+    return
   }
+
+  setSending(true)
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+
+    const data = await res.json()
+    console.log("API:", data)
+
+    if (data.error) {
+      alert("Lỗi: " + data.error)
+      return
+    }
+
+    setSubmitted(true)
+  } catch (err) {
+    console.log("ERROR:", err)
+    alert("Gửi thất bại")
+  }
+
+  setSending(false)
+}
 
   return (
     <>

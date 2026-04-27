@@ -37,10 +37,7 @@ const [projects, setProjects] = useState<Project[]>([])
   const toggleSelect = (id: string) =>
     setSelected((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
-  const submitRequest = () => {
-    if (selected.length === 0) return;
-    setSent(true);
-  };
+  
 
 const handleSubmit = async () => {
   const selectionsData = selected.map((id) => ({
@@ -48,7 +45,7 @@ const handleSubmit = async () => {
     note: notes[id] || ""
   }))
 
-  await fetch("/api/submit", {
+  const res = await fetch("/api/submit", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -58,8 +55,16 @@ const handleSubmit = async () => {
       selections: selectionsData
     })
   })
+const data = await res.json()
 
+console.log("API:", data)
+
+if (data.error) {
+  alert("Lỗi: " + data.error)
+  return
+}
   alert("Đã gửi yêu cầu!")
+  setSent(true)
 }
 
 const prevPhoto = useCallback(

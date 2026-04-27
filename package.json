@@ -13,7 +13,8 @@
     "@vercel/analytics": "^1.1.4",
     "next": "^16.2.4",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "resend": "^6.12.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.4",
